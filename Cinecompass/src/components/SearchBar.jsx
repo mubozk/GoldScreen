@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, TextInput } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { COLORS } from "../../constants.jsx";
-export default SearchBar = ({term, onTermChange, onTermSubmit}) => {
+export default SearchBar = ({ term, onTermChange, onTermSubmit }) => {
   return (
     <View style={styles.backgroundStyle}>
       <Feather style={styles.iconStyle} name="search" size={30} />
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontSize: 35,
     marginHorizontal: 10,
-    color: COLORS.cinecompassYellow
+    color: COLORS.cinecompassYellow,
   },
   inputStyle: {
     alignSelf: "center",
