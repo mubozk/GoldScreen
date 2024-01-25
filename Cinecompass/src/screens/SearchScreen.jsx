@@ -1,23 +1,28 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Text } from "react-native";
 import SearchBar from "../components/SearchBar";
-import { SafeAreaView } from "react-navigation";
+import { COLORS } from "../../constants";
+import useResults from "../hooks/useResults";
+import ResultsList from "../components/ResultsList";
+
 export default SearchScreen = () => {
+  const [query, setQuery] = useState("");
+  const { searchAPI, results, errorMessage } = useResults();
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.backgroundStyle}>
-        <SearchBar />
-      </View>
-    </SafeAreaView>
+    <View style={styles.backgroundStyle}>
+      <SearchBar
+        term={query}
+        onTermChange={setQuery}
+        onTermSubmit={() => searchAPI(query)}
+      />
+      {errorMessage ? <Text>{errorMessage}</Text> : null}
+      <ResultsList title={"results"} results={results} />
+    </View>
   );
 };
 const styles = StyleSheet.create({
-  safeArea: {
-    backgroundColor: "#1b1b1b",
-    flex: 1,
-  },
   backgroundStyle: {
     flex: 1,
-    backgroundColor: "#1b1b1b",
+    backgroundColor: COLORS.primary,
   },
 });
