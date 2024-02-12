@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
-export default ResultsList = ({ title, results }) => {
+const ResultsList = ({ title, results }) => {
   return (
     <View style={styles.backgroundStyle}>
       <Text style={styles.title}>{title}</Text>
@@ -23,3 +23,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+export default ResultsList;

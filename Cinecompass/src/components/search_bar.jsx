@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, TextInput } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { COLORS } from "../../constants.jsx";
+import { COLORS } from "../constants/config.jsx";
 export default SearchBar = ({ term, onTermChange, onTermSubmit }) => {
   return (
     <View style={styles.backgroundStyle}>

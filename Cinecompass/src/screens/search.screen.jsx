@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import SearchBar from "../components/SearchBar";
-import { COLORS } from "../../constants";
-import useResults from "../hooks/useResults";
-import ResultsList from "../components/ResultsList";
+import SearchBar from "../components/search_bar";
+import { COLORS } from "../constants/config";
+import useResults from "../hooks/search.hooks";
+import ResultsList from "../components/results_list";
 
-export default SearchScreen = () => {
+const SearchScreen = () => {
   const [query, setQuery] = useState("");
   const { searchAPI, results, errorMessage } = useResults();
   return (
@@ -20,6 +20,7 @@ export default SearchScreen = () => {
     </View>
   );
 };
+export default SearchScreen;
 const styles = StyleSheet.create({
   backgroundStyle: {
     flex: 1,

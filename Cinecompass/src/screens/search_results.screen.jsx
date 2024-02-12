@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList, View, StyleSheet, Text } from "react-native";
-export default SearchResultsScreen = () => {
+const SearchResultsScreen = () => {
   const friends = [
     { name: "Movie#1", rating: 1 },
     { name: "Movie#2", rating: 2 },
@@ -34,3 +34,5 @@ const styles = StyleSheet.create({
     marginVertical: 50,
   },
 });
+
+export default SearchResultsScreen;

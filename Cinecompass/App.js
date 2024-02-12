@@ -1,8 +1,8 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import SearchScreen from "./src/screens/SearchScreen.jsx";
-import SearchResultsScreen from "./src/screens/SearchResultsScreen";
-import { COLORS } from "./constants.jsx";
+import SearchScreen from "./src/screens/search.screen";
+import SearchResultsScreen from "./src/screens/search_results.screen.jsx";
+import { COLORS } from "./src/constants/config.jsx";
 const navigator = createStackNavigator(
   {
     Home: SearchScreen,
@@ -21,8 +21,8 @@ const navigator = createStackNavigator(
         fontWeight: "bold",
         fontSize: 40,
         color: COLORS.cinecompassYellow,
-        alignSelf: 'center',
-        fontFamily: 'Impact'
+        alignSelf: "center",
+        fontFamily: "Impact",
       },
     },
   }
