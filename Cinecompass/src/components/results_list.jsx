@@ -1,11 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import colors from "../constants/colors";
 
-export default ResultsList = ({ title, results }) => {
+const ResultsList = ({ title, results }) => {
+  const { titleStyle } = styled(colors.dark_theme);
   return (
-    <View style={styles.backgroundStyle}>
-      <Text style={styles.title}>{title}</Text>
+    <View>
+      <Text style={titleStyle}>{title}</Text>
       <Text>Results: {results.length}</Text>
       <FlatList
         data={results}
@@ -17,9 +19,11 @@ export default ResultsList = ({ title, results }) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-});
+const styled = (themePalette) =>
+  StyleSheet.create({
+    titleStyle: {
+      fontSize: 18,
+      fontWeight: "bold",
+    },
+  });
+export default ResultsList;

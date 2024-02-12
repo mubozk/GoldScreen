@@ -1,8 +1,9 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import SearchScreen from "./src/screens/SearchScreen.jsx";
-import SearchResultsScreen from "./src/screens/SearchResultsScreen";
-import { COLORS } from "./constants.jsx";
+import SearchScreen from "./src/screens/search.screen";
+import SearchResultsScreen from "./src/screens/search_results.screen.jsx";
+import colors from "./src/constants/colors.jsx";
+const { dark_theme } = colors;
 const navigator = createStackNavigator(
   {
     Home: SearchScreen,
@@ -14,15 +15,15 @@ const navigator = createStackNavigator(
     defaultNavigationOptions: {
       title: "CineCompass",
       headerStyle: {
-        backgroundColor: COLORS.primary,
+        backgroundColor: dark_theme.primary,
         shadowColor: "transparent",
       },
       headerTitleStyle: {
         fontWeight: "bold",
         fontSize: 40,
-        color: COLORS.cinecompassYellow,
-        alignSelf: 'center',
-        fontFamily: 'Impact'
+        color: dark_theme.cinecompassYellow,
+        alignSelf: "center",
+        fontFamily: "Impact",
       },
     },
   }
