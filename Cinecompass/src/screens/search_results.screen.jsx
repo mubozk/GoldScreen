@@ -1,6 +1,8 @@
 import React from "react";
 import { FlatList, View, StyleSheet, Text } from "react-native";
+import colors from "../constants/colors";
 const SearchResultsScreen = () => {
+  const { textStyle } = styled(colors.dark_theme);
   const friends = [
     { name: "Movie#1", rating: 1 },
     { name: "Movie#2", rating: 2 },
@@ -20,7 +22,7 @@ const SearchResultsScreen = () => {
       data={friends}
       renderItem={({ item }) => {
         return (
-          <Text style={styles.textStyle}>
+          <Text style={textStyle}>
             {item.name} - {item.age}
           </Text>
         );
@@ -29,10 +31,11 @@ const SearchResultsScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  textStyle: {
-    marginVertical: 50,
-  },
-});
+const styled = (themePalette) =>
+  StyleSheet.create({
+    textStyle: {
+      marginVertical: 50,
+    },
+  });
 
 export default SearchResultsScreen;

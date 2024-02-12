@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import SearchBar from "../components/search_bar";
-import { COLORS } from "../constants/config";
 import useResults from "../hooks/search.hooks";
 import ResultsList from "../components/results_list";
+import colors from "../constants/colors";
 
 const SearchScreen = () => {
   const [query, setQuery] = useState("");
   const { searchAPI, results, errorMessage } = useResults();
+  const { backgroundStyle } = styled(colors.dark_theme);
   return (
-    <View style={styles.backgroundStyle}>
+    <View style={backgroundStyle}>
       <SearchBar
         term={query}
         onTermChange={setQuery}
@@ -21,9 +22,10 @@ const SearchScreen = () => {
   );
 };
 export default SearchScreen;
-const styles = StyleSheet.create({
-  backgroundStyle: {
-    flex: 1,
-    backgroundColor: COLORS.primary,
-  },
-});
+const styled = (themePalette) =>
+  StyleSheet.create({
+    backgroundStyle: {
+      flex: 1,
+      backgroundColor: themePalette.primary,
+    },
+  });
