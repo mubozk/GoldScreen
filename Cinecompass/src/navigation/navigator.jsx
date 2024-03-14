@@ -1,8 +1,7 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import * as Screens from "./screens";
-import Paths from "./paths";
-import colors from "../constants/colors";
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as Screens from './screens';
+import colors from '../constants/colors';
 
 const { dark_theme } = colors;
 const RootStack = createStackNavigator();
@@ -23,19 +22,19 @@ const screenOptions = {
 
 const ScreensNavigator = () => {
   return (
-    <RootStack.Navigator
-      initialRouteName={Paths.home}
+    <RootStack.Navigator 
+      initialRouteName="Home"
       screenOptions={screenOptions}
     >
-      <RootStack.Screen
-        name={Paths.home}
-        component={Screens.HomeScreen}
-        options={{ title: "CineCompass" }}
+      <RootStack.Screen 
+        name="Home" 
+        component={Screens.Search} 
+        options={{ title: 'CineCompass' }} 
       />
-      <RootStack.Screen
-        name={Paths.results}
-        component={Screens.SearchResultsScreen}
-        options={{ title: "CineCompass" }}
+      <RootStack.Screen 
+        name="Results"
+        component={Screens.SearchResults}
+        options={{ title: 'CineCompass' }} 
       />
       {/* Add more screens here with similar structure */}
     </RootStack.Navigator>
