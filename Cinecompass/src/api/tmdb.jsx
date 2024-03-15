@@ -1,4 +1,5 @@
-import tmdb from "./api/tmdb";
+import axios from "axios";
+import { URLS, api_key } from "../constants/config";
 
 const searchMovies = async (searchTerm) => {
   try {
@@ -13,6 +14,4 @@ const searchMovies = async (searchTerm) => {
   }
 };
 
-export {
-  searchMovies,
-};
+export { searchMovies };
