@@ -15,7 +15,10 @@ const SearchScreen = () => {
       <SearchBar
         term={query}
         onTermChange={setQuery}
-        onTermSubmit={() => searchAPI(query)}
+        onTermSubmit={() => {
+          searchAPI(query);
+          navigatePush("Results")
+        }}
       />
       <Button title="test" onPress={() => navigatePush("Results")} />
       {errorMessage ? <Text>{errorMessage}</Text> : null}

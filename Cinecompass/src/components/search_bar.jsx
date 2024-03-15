@@ -3,15 +3,15 @@ import { StyleSheet, View, TextInput } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import colors from "../constants/colors.jsx";
 const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
-  const { backgroundStyle, iconStyle, inputStyle } = styled(colors.dark_theme);
-  const { dark_theme } = colors;
+    const { dark_theme } = colors;
+  const { backgroundStyle, iconStyle, inputStyle, textInputStyle } = styled(colors.dark_theme);
   return (
     <View style={backgroundStyle}>
       <Feather style={iconStyle} name="search" size={30} />
       <TextInput
         autoCapitalize="none"
         autoCorrect={false}
-        style={inputStyle}
+        style={textInputStyle}
         placeholder="Search your favorite movies now!"
         placeholderTextColor={dark_theme.tertiary}
         value={term}
@@ -35,14 +35,15 @@ const styled = (themePalette) =>
     iconStyle: {
       alignSelf: "center",
       fontSize: 35,
-      marginHorizontal: 10,
+      marginHorizontal: 15,
       color: themePalette.cinecompassYellow,
     },
-    inputStyle: {
-      alignSelf: "center",
+    inputStyle: {},
+    textInputStyle: {
+      color: themePalette.text,
       fontSize: 17,
-      marginHorizontal: 15,
-      color: "white",
+      width: "82%",
+      height: "100%",
     },
   });
 export default SearchBar;

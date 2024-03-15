@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, View, StyleSheet, Text } from "react-native";
 import colors from "../constants/colors";
-const SearchResultsScreen = () => {
+const SearchResultsScreen = ({results}) => {
   const { textStyle } = styled(colors.dark_theme);
   const friends = [
     { name: "Movie#1", rating: 1 },
@@ -16,18 +16,22 @@ const SearchResultsScreen = () => {
   ];
 
   return (
-    <FlatList
-      showsVerticalScrollIndicator={false}
-      keyExtractor={(friend) => friend.name}
-      data={friends}
-      renderItem={({ item }) => {
-        return (
-          <Text style={textStyle}>
-            {item.name} - {item.age}
-          </Text>
-        );
-      }}
-    />
+    <>
+      <ResultsList title={"results"} results={results} />
+
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(friend) => friend.name}
+        data={friends}
+        renderItem={({ item }) => {
+          return (
+            <Text style={textStyle}>
+              {item.name} - {item.age}
+            </Text>
+          );
+        }}
+      />
+    </>
   );
 };
 
