@@ -22,19 +22,21 @@ const screenOptions = {
 
 const ScreensNavigator = () => {
   return (
-    <RootStack.Navigator 
-      initialRouteName="Home"
-      screenOptions={screenOptions}
-    >
-      <RootStack.Screen 
-        name="Home" 
-        component={Screens.Search} 
-        options={{ title: 'CineCompass' }} 
+    <RootStack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+      <RootStack.Screen
+        name="Home"
+        component={Screens.Search}
+        options={{ title: "CineCompass" }}
       />
-      <RootStack.Screen 
+      <RootStack.Screen
         name="Results"
         component={Screens.SearchResults}
-        options={{ title: 'CineCompass' }} 
+        options={{ title: "CineCompass" }}
+      />
+      <RootStack.Screen
+        name="Details"
+        component={Screens.MovieDetails}
+        options={{ title: "CineCompass" }}
       />
       {/* Add more screens here with similar structure */}
     </RootStack.Navigator>

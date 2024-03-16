@@ -1,20 +1,22 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 
-const MovieItem = ({ movie }) => {
+const MovieItem = ({ movie, onPress }) => {
   const posterImageUrl = movie.posterPath
     ? `https://image.tmdb.org/t/p/w500${movie.posterPath}`
     : "path-to-default-image";
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: posterImageUrl }} style={styles.icon} />
-      <View style={styles.details}>
-        <Text style={styles.title}>{movie.title}</Text>
-        <Text style={styles.releaseDate}>{movie.releaseDate}</Text>
+    <Pressable onPress={() => onPress(movie.id)}>
+      <View style={styles.container}>
+        <Image source={{ uri: posterImageUrl }} style={styles.icon} />
+        <View style={styles.details}>
+          <Text style={styles.title}>{movie.title}</Text>
+          <Text style={styles.releaseDate}>{movie.releaseDate}</Text>
+        </View>
+        <Text style={styles.rating}>{movie.voteAverage.toFixed(2)}</Text>
       </View>
-      <Text style={styles.rating}>{movie.voteAverage.toFixed(2)}</Text>
-    </View>
+    </Pressable>
   );
 };
 

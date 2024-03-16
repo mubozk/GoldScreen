@@ -1,4 +1,4 @@
 import Search from "../screens/search.screen";
 import SearchResults from "../screens/search_results.screen";
-
-export { Search, SearchResults };
+import MovieDetails from "../screens/movie_details.screen";
+export { Search, SearchResults, MovieDetails };
