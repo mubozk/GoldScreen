@@ -1,6 +1,6 @@
 const appInitialState = {
   loading: false,
-  theme: "light",
+  theme: "dark",
 };
 const appReducer = (state, action) => {
   switch (action.type) {

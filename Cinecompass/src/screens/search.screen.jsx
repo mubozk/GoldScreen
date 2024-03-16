@@ -16,8 +16,6 @@ const SearchScreen = () => {
         onTermChange={setQuery}
         onTermSubmit={() => navigatePush("Results", { searchTerm: query })}
       />
-      <Button title="test" onPress={() => navigatePush("Results")} />
-      <Button title="Toggle Theme" onPress={toggleTheme} />
     </View>
   );
 };

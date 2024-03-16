@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import useResults from "../hooks/search.hooks";
 import ResultsList from "../components/results_list";
-import colors from "../constants/colors";
+import useAppHooks from "../hooks/app.hooks";
 
 const SearchResultsScreen = ({ route }) => {
-  const { textStyle } = styled(colors.dark_theme);
+  const { themePalette } = useAppHooks();
+  const {} = styled(themePalette);
   const { searchTerm } = route.params;
   const { searchAPI, results, errorMessage } = useResults();
   useEffect(() => {
@@ -14,13 +15,17 @@ const SearchResultsScreen = ({ route }) => {
     }
   }, [searchTerm]);
 
-  return <ResultsList title={"results"} results={results} />;
+  return (
+    <View>
+      <ResultsList results={results} />
+    </View>
+  );
 };
 
 const styled = (themePalette) =>
   StyleSheet.create({
-    textStyle: {
-      marginVertical: 50,
+    container: {
+      backgroundColor: themePalette.primary,
     },
   });
 

@@ -1,26 +1,23 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as Screens from './screens';
-import colors from '../constants/colors';
-
-const { dark_theme } = colors;
+import { StyleSheet } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as Screens from "./screens";
+import useAppHooks from "../hooks/app.hooks";
+import { Platform } from "react-native";
+import ThemeSwitchButton from "../components/theme_switch.button";
 const RootStack = createStackNavigator();
 
-const screenOptions = {
-  headerStyle: {
-    backgroundColor: dark_theme.primary,
-    shadowColor: "transparent",
-  },
-  headerTitleStyle: {
-    fontWeight: "bold",
-    fontSize: 40,
-    color: dark_theme.cinecompassYellow,
-    alignSelf: "center",
-    fontFamily: "Impact",
-  },
-};
+export default ScreensNavigator = () => {
+  const { themePalette } = useAppHooks();
+  const { headerStyle, headerTitleStyle } = styled(themePalette);
 
-const ScreensNavigator = () => {
+  const screenOptions = {
+    headerStyle: headerStyle,
+    headerTitleStyle: headerTitleStyle,
+    headerTintColor: themePalette.cinecompassYellow,
+    headerRight: () => <ThemeSwitchButton />,
+  };
+
   return (
     <RootStack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
       <RootStack.Screen
@@ -38,9 +35,21 @@ const ScreensNavigator = () => {
         component={Screens.MovieDetails}
         options={{ title: "CineCompass" }}
       />
-      {/* Add more screens here with similar structure */}
     </RootStack.Navigator>
   );
 };
 
-export default ScreensNavigator;
+const styled = (themePalette) =>
+  StyleSheet.create({
+    headerStyle: {
+      backgroundColor: themePalette.primary,
+      shadowColor: "transparent",
+    },
+    headerTitleStyle: {
+      fontWeight: "bold",
+      fontSize: 40,
+      color: themePalette.cinecompassYellow,
+      alignSelf: "center",
+      fontFamily: Platform.OS == "ios" ? "Impact" : null,
+    },
+  });

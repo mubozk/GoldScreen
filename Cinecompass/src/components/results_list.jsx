@@ -1,21 +1,19 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import colors from "../constants/colors";
 import MovieItem from "./movie_item";
 import NavigationActions from "../navigation/navigation_actions";
+import useAppHooks from "../hooks/app.hooks";
 
-const ResultsList = ({ title, results }) => {
-  const { titleStyle } = styled(colors.dark_theme);
+const ResultsList = ({ results }) => {
+  const { themePalette } = useAppHooks();
+  const { container, titleStyle } = styled(themePalette);
   const { navigatePush } = NavigationActions();
   const onMoviePress = (movieId) => {
     navigatePush("Details", { movieId });
   };
   return (
-    <View>
-      <Text style={titleStyle}>{title}</Text>
-      <Text>Results: {results.length}</Text>
-
+    <View style={container}>
       <FlatList
         data={results}
         keyExtractor={(result) => result.id}
@@ -28,7 +26,9 @@ const ResultsList = ({ title, results }) => {
 };
 const styled = (themePalette) =>
   StyleSheet.create({
+    container: { backgroundColor: themePalette.primary },
     titleStyle: {
+      color: "themePalette.text",
       fontSize: 18,
       fontWeight: "bold",
     },
