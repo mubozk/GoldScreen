@@ -10,15 +10,13 @@ const useResults = () => {
     try {
       const encodedQuery = encodeURIComponent(searchTerm);
       const response = await tmdb.get("/search/movie", {
-        params: {
-          query: encodedQuery,
-        },
+        params: { query: encodedQuery },
       });
       setResults(response.data.results);
     } catch (err) {
-      setErrorMessage("something went wrong");
+      setErrorMessage("Something went wrong");
     } finally {
-      stopLoading();
+      stopLoading(); 
     }
   };
   return { searchAPI, results, errorMessage, isLoading };
