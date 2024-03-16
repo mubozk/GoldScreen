@@ -7,7 +7,7 @@ const useAppHooks = () => {
 
   const themePalette =
     appState.theme === "dark" ? colors.dark_theme : colors.light_theme;
-
+  const themeToggleIcon = appState.theme === "dark" ? "moon" : "sunny";
   const toggleLoading = () => {
     appDispatch({ type: "TOGGLE_LOADING" });
   };
@@ -24,6 +24,7 @@ const useAppHooks = () => {
     stopLoading,
     toggleLoading,
     toggleTheme,
+    themeToggleIcon,
   };
 };
 export default useAppHooks;

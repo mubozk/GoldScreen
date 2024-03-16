@@ -4,12 +4,12 @@ import { Ionicons } from "@expo/vector-icons";
 import useAppHooks from "../hooks/app.hooks";
 
 const ThemeSwitchButton = () => {
-  const { themePalette, toggleTheme } = useAppHooks();
+  const { themePalette, toggleTheme, themeToggleIcon } = useAppHooks();
 
   return (
     <TouchableOpacity onPress={toggleTheme} style={{ marginRight: 15 }}>
       <Ionicons
-        name={themePalette.theme === "dark" ? "moon" : "sunny"}
+        name={themeToggleIcon}
         size={24}
         color={themePalette.cinecompassYellow}
       />
