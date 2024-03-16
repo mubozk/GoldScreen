@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { mapApiResponseToMovies } from "../utils/movie_utils";
 import tmdb from "../api/tmdb";
 import useAppHooks from "./app.hooks";
 const useResults = () => {
@@ -12,11 +13,12 @@ const useResults = () => {
       const response = await tmdb.get("/search/movie", {
         params: { query: encodedQuery },
       });
-      setResults(response.data.results);
+      const mappedResults = mapApiResponseToMovies(response.data);
+      setResults(mappedResults);
     } catch (err) {
       setErrorMessage("Something went wrong");
     } finally {
-      stopLoading(); 
+      stopLoading();
     }
   };
   return { searchAPI, results, errorMessage, isLoading };

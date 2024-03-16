@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import colors from "../constants/colors";
+import MovieItem from "./movie_item";
 
 const ResultsList = ({ title, results }) => {
   const { titleStyle } = styled(colors.dark_theme);
@@ -14,7 +15,7 @@ const ResultsList = ({ title, results }) => {
         data={results}
         keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
-          return <Text>{item.title}</Text>;
+          return <MovieItem movie={item} />;
         }}
       />
     </View>
