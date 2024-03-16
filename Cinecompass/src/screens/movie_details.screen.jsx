@@ -1,13 +1,22 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Image, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import useDetails from "../hooks/movie_details.hooks";
 import useAppHooks from "../hooks/app.hooks";
 import { ScrollView } from "react-native-gesture-handler";
+import { Fontisto } from "@expo/vector-icons";
 const MovieDetails = ({ route }) => {
   const { movieId } = route.params;
   const { getMovieDetails, movieDetails, errorMessage } = useDetails();
   const { themePalette } = useAppHooks();
-  const { container, poster, title, details, overview } = styled(themePalette);
+  const { container, headerContainer, poster, title, details, overview } =
+    styled(themePalette);
   useEffect(() => {
     getMovieDetails(movieId);
   }, [movieId]);
@@ -24,16 +33,20 @@ const MovieDetails = ({ route }) => {
         }}
         style={poster}
       />
-      <Text style={title}>{movieDetails.title}</Text>
-      <Button
-        title="★"
-        onPress={() => {
-          /* Handle Favorite */
-        }}
-      />
+      <View style={headerContainer}>
+        <Text style={title}>{movieDetails.title}</Text>
+        <TouchableOpacity>
+          <Fontisto
+            name="favorite"
+            size={45}
+            color={true ? themePalette.cinecompassYellow : themePalette.text}
+          />
+        </TouchableOpacity>
+      </View>
       <Text style={details}>{movieDetails.releaseDate}</Text>
       <Text style={details}>
-        {movieDetails.voteAverage.toFixed(2)} ({movieDetails.voteCount} votes)
+        ✪ {movieDetails.voteAverage.toFixed(2)} / ({movieDetails.voteCount}{" "}
+        votes)
       </Text>
       <ScrollView>
         <Text style={overview}>{movieDetails.overview}</Text>
@@ -48,6 +61,10 @@ const styled = (themePalette) =>
       flex: 1,
       padding: 10,
       backgroundColor: themePalette.primary,
+    },
+    headerContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
     },
     poster: {
       width: "100%",
