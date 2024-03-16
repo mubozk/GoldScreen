@@ -6,22 +6,18 @@ import colors from "../constants/colors";
 const ResultsList = ({ title, results }) => {
   const { titleStyle } = styled(colors.dark_theme);
   return (
-    <>
-      {results && (
-        <View>
-          <Text style={titleStyle}>{title}</Text>
-          <Text>Results: {results.length}</Text>
+    <View>
+      <Text style={titleStyle}>{title}</Text>
+      <Text>Results: {results.length}</Text>
 
-          <FlatList
-            data={results}
-            keyExtractor={(result) => result.id}
-            renderItem={({ item }) => {
-              return <Text>{item.title}</Text>;
-            }}
-          />
-        </View>
-      ) }
-    </>
+      <FlatList
+        data={results}
+        keyExtractor={(result) => result.id}
+        renderItem={({ item }) => {
+          return <Text>{item.title}</Text>;
+        }}
+      />
+    </View>
   );
 };
 const styled = (themePalette) =>

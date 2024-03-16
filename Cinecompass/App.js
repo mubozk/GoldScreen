@@ -1,14 +1,16 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { ThemeProvider } from "./src/contexts/theme.context";
 import Navigator from "./src/navigation/navigator";
+import { AppProvider } from "./src/contexts/app.context";
+import GlobalLoading from "./GlobalLoading";
 
 const App = () => (
-  <ThemeProvider>
+  <AppProvider>
     <NavigationContainer>
       <Navigator />
+      <GlobalLoading />
     </NavigationContainer>
-  </ThemeProvider>
+  </AppProvider>
 );
 
 export default App;

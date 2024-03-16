@@ -1,13 +1,12 @@
 import { useState } from "react";
 import tmdb from "../api/tmdb";
+import useAppHooks from "./app.hooks";
 const useResults = () => {
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, stopLoading } = useAppHooks();
 
   const searchAPI = async (searchTerm) => {
-    setIsLoading(true);
-
     try {
       const encodedQuery = encodeURIComponent(searchTerm);
       const response = await tmdb.get("/search/movie", {
@@ -19,7 +18,7 @@ const useResults = () => {
     } catch (err) {
       setErrorMessage("something went wrong");
     } finally {
-      setIsLoading(false);
+      stopLoading();
     }
   };
   return { searchAPI, results, errorMessage, isLoading };
