@@ -6,7 +6,7 @@ import useAppHooks from "../hooks/app.hooks";
 
 const SearchResultsScreen = ({ route }) => {
   const { themePalette } = useAppHooks();
-  const {} = styled(themePalette);
+  const { container } = styled(themePalette);
   const { searchTerm } = route.params;
   const { searchAPI, results, errorMessage } = useResults();
   useEffect(() => {
@@ -16,7 +16,7 @@ const SearchResultsScreen = ({ route }) => {
   }, [searchTerm]);
 
   return (
-    <View>
+    <View style={container}>
       <ResultsList results={results} />
     </View>
   );
