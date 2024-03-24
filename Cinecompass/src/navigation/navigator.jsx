@@ -18,22 +18,26 @@ export default ScreensNavigator = () => {
     headerRight: () => <ThemeSwitchButton />,
   };
 
+  const options = {
+    title: "CineCompass",
+  };
+
   return (
     <RootStack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
       <RootStack.Screen
         name="Home"
         component={Screens.Search}
-        options={{ title: "CineCompass" }}
+        options={{ ...options }}
       />
       <RootStack.Screen
         name="Results"
         component={Screens.SearchResults}
-        options={{ title: "CineCompass" }}
+        options={{ ...options }}
       />
       <RootStack.Screen
         name="Details"
         component={Screens.MovieDetails}
-        options={{ title: "CineCompass" }}
+        options={{ ...options }}
       />
     </RootStack.Navigator>
   );
