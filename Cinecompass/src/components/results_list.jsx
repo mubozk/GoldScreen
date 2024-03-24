@@ -17,6 +17,7 @@ const ResultsList = ({ results }) => {
       <FlatList
         data={results}
         keyExtractor={(result) => result.id}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
           return <MovieItem movie={item} onPress={onMoviePress} />;
         }}
