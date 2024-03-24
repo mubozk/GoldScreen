@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, View, TextInput } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import colors from "../constants/colors.jsx";
+import useAppHooks from "../hooks/app.hooks.jsx";
 const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
-    const { dark_theme } = colors;
-  const { backgroundStyle, iconStyle, inputStyle, textInputStyle } = styled(colors.dark_theme);
+  const { themePalette } = useAppHooks();
+  const { backgroundStyle, iconStyle, inputStyle, textInputStyle } =
+    styled(themePalette);
   return (
     <View style={backgroundStyle}>
       <Feather style={iconStyle} name="search" size={30} />
@@ -13,7 +14,7 @@ const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
         autoCorrect={false}
         style={textInputStyle}
         placeholder="Search your favorite movies now!"
-        placeholderTextColor={dark_theme.tertiary}
+        placeholderTextColor={themePalette.tertiary}
         value={term}
         onChangeText={onTermChange}
         onEndEditing={onTermSubmit}

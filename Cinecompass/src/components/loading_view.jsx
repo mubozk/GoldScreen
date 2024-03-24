@@ -1,10 +1,12 @@
 import React from "react";
 import { View, ActivityIndicator, StyleSheet } from "react-native";
+import useAppHooks from "../hooks/app.hooks";
 
 const LoadingView = () => {
+  const { themePalette } = useAppHooks();
   return (
     <View style={styles.loadingContainer}>
-      <ActivityIndicator size="large" color="#0000ff" />
+      <ActivityIndicator size="large" color={themePalette.text} />
     </View>
   );
 };
@@ -19,7 +21,7 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
     bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
 
