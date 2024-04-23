@@ -27,7 +27,10 @@ const ResultsList = ({ results }) => {
 };
 const styled = (themePalette) =>
   StyleSheet.create({
-    container: { backgroundColor: themePalette.primary },
+    container: {
+      flex: 1,
+      backgroundColor: themePalette.primary,
+    },
     titleStyle: {
       color: "themePalette.text",
       fontSize: 18,

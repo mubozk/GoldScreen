@@ -15,7 +15,19 @@ const MovieDetails = ({ route }) => {
   }, [movieId]);
 
   if (!movieDetails) {
-    return null;
+    return (
+      <View style={container}>
+        <View style={poster} />
+        <View style={headerContainer}>
+          <Text style={title}>Loading...</Text>
+          <FavouriteButton movie={null} />
+        </View>
+        <Text style={details}>Loading...</Text>
+        <ScrollView>
+          <Text style={overview}>Loading...</Text>
+        </ScrollView>
+      </View>
+    );
   }
 
   return (

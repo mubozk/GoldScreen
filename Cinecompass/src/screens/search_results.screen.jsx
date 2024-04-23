@@ -25,6 +25,7 @@ const SearchResultsScreen = ({ route }) => {
 const styled = (themePalette) =>
   StyleSheet.create({
     container: {
+      flex: 1,
       backgroundColor: themePalette.primary,
     },
   });
