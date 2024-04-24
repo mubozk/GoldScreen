@@ -20,7 +20,7 @@ const SearchBar = ({
         <AntDesign
           name={isFavouritesToggled ? "heart" : "hearto"}
           size={25}
-          color="black"
+          color={isFavouritesToggled ? themePalette.cinecompassYellow : "black"}
         />
       </TouchableOpacity>
       <TextInput

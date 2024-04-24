@@ -20,7 +20,7 @@ const MovieDetails = ({ route }) => {
         <View style={poster} />
         <View style={headerContainer}>
           <Text style={title}>Loading...</Text>
-          <FavouriteButton movie={null} />
+          {movieDetails && <FavouriteButton movie={movieDetails} />}
         </View>
         <Text style={details}>Loading...</Text>
         <ScrollView>
