@@ -5,6 +5,7 @@ import * as Screens from "./screens";
 import useAppHooks from "../hooks/app.hooks";
 import { Platform } from "react-native";
 import ThemeSwitchButton from "../components/theme_switch.button";
+import { FavouritesProvider } from "../contexts/favourites.context";
 const RootStack = createStackNavigator();
 
 const ScreensNavigator = () => {
@@ -23,23 +24,28 @@ const ScreensNavigator = () => {
   };
 
   return (
-    <RootStack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
-      <RootStack.Screen
-        name="Home"
-        component={Screens.Search}
-        options={{ ...options }}
-      />
-      <RootStack.Screen
-        name="Results"
-        component={Screens.SearchResults}
-        options={{ ...options }}
-      />
-      <RootStack.Screen
-        name="Details"
-        component={Screens.MovieDetails}
-        options={{ ...options }}
-      />
-    </RootStack.Navigator>
+    <FavouritesProvider>
+      <RootStack.Navigator
+        initialRouteName="Home"
+        screenOptions={screenOptions}
+      >
+        <RootStack.Screen
+          name="Home"
+          component={Screens.Search}
+          options={{ ...options }}
+        />
+        <RootStack.Screen
+          name="Results"
+          component={Screens.SearchResults}
+          options={{ ...options }}
+        />
+        <RootStack.Screen
+          name="Details"
+          component={Screens.MovieDetails}
+          options={{ ...options }}
+        />
+      </RootStack.Navigator>
+    </FavouritesProvider>
   );
 };
 
