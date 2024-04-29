@@ -1,19 +1,23 @@
-import React from "react";
+import { initializeApp } from "firebase/app";
+import { AuthenticationContextProvider } from "./src/services/authentication.context";
 import { NavigationContainer } from "@react-navigation/native";
-import Navigator from "./src/navigation/navigator";
 import { AppProvider } from "./src/contexts/app.context";
 import GlobalLoading from "./GlobalLoading";
 import { FavouritesProvider } from "./src/contexts/favourites.context";
+import { firebaseConfig } from "./src/constants/config";
+import Navigator from "./src/navigation";
+
+initializeApp(firebaseConfig);
 
 const App = () => (
-  <AppProvider>
-    <FavouritesProvider>
-      <NavigationContainer>
+  <AuthenticationContextProvider>
+    <AppProvider>
+      <FavouritesProvider>
         <Navigator />
         <GlobalLoading />
-      </NavigationContainer>
-    </FavouritesProvider>
-  </AppProvider>
+      </FavouritesProvider>
+    </AppProvider>
+  </AuthenticationContextProvider>
 );
 
 export default App;

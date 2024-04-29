@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Screens from "./screens";
@@ -7,7 +7,7 @@ import { Platform } from "react-native";
 import ThemeSwitchButton from "../components/theme_switch.button";
 const RootStack = createStackNavigator();
 
-export default ScreensNavigator = () => {
+const ScreensNavigator = () => {
   const { themePalette } = useAppHooks();
   const { headerStyle, headerTitleStyle } = styled(themePalette);
 
@@ -57,3 +57,4 @@ const styled = (themePalette) =>
       fontFamily: Platform.OS == "ios" ? "Impact" : null,
     },
   });
+export default ScreensNavigator;
