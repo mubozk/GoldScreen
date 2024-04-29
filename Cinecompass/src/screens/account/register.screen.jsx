@@ -25,7 +25,7 @@ const RegisterScreen = () => {
     >
       <View style={styles.cover} />
       <View style={styles.container}>
-        <Text style={styles.title}>Meals To Go</Text>
+        <Text style={styles.title}>Register</Text>
         <TextInput
           style={styles.input}
           label="E-mail"
