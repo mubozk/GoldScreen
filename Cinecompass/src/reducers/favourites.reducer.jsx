@@ -16,6 +16,11 @@ export const favouritesReducer = (state, action) => {
           (favourite) => favourite.movieId !== action.payload.movieId
         ),
       };
+    case "LOAD_FAVOURITES":
+      return {
+        ...state,
+        favourites: action.payload,
+      };
     default:
       return state;
   }
