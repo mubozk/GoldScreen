@@ -8,7 +8,7 @@ import {
   ImageBackground,
   ActivityIndicator,
 } from "react-native";
-import { AuthenticationContext } from "../../services/authentication.context";
+import { AuthenticationContext } from "../../contexts/authentication.context";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");

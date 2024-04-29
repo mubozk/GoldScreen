@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { AuthenticationContextProvider } from "./src/services/authentication.context";
-import { NavigationContainer } from "@react-navigation/native";
+import { AuthenticationContextProvider } from "./src/contexts/authentication.context";
 import { AppProvider } from "./src/contexts/app.context";
 import GlobalLoading from "./GlobalLoading";
 import { firebaseConfig } from "./src/constants/config";

@@ -5,7 +5,7 @@ import NavigationActions from "../navigation/navigation_actions";
 import useAppHooks from "../hooks/app.hooks";
 import useFavourites from "../hooks/favourites.hooks";
 import ResultsList from "../components/results_list";
-import { AuthenticationContext } from "../services/authentication.context";
+import { AuthenticationContext } from "../contexts/authentication.context";
 import { useContext } from "react";
 const SearchScreen = () => {
   const { themePalette, toggleTheme } = useAppHooks();

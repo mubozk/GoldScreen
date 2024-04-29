@@ -8,7 +8,7 @@ import {
   ImageBackground,
   ActivityIndicator,
 } from "react-native";
-import { AuthenticationContext } from "../../services/authentication.context";
+import { AuthenticationContext } from "../../contexts/authentication.context";
 import NavigationActions from "../../navigation/navigation_actions";
 
 const RegisterScreen = () => {
