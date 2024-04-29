@@ -13,7 +13,7 @@ export const favouritesReducer = (state, action) => {
       return {
         ...state,
         favourites: state.favourites.filter(
-          (favourite) => favourite.movieId !== action.payload.movieId
+          (favourite) => favourite.id !== action.payload.id
         ),
       };
     case "LOAD_FAVOURITES":
