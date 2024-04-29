@@ -5,6 +5,8 @@ import NavigationActions from "../navigation/navigation_actions";
 import useAppHooks from "../hooks/app.hooks";
 import useFavourites from "../hooks/favourites.hooks";
 import ResultsList from "../components/results_list";
+import { AuthenticationContext } from "../contexts/authentication.context";
+import { useContext } from "react";
 const SearchScreen = () => {
   const { themePalette, toggleTheme } = useAppHooks();
   const [query, setQuery] = useState("");
@@ -20,6 +22,7 @@ const SearchScreen = () => {
     navigatePush("Results", { searchTerm: query });
     setIsFavouritesToggled(false);
   };
+  const { onLogout } = useContext(AuthenticationContext);
 
   return (
     <View style={backgroundStyle}>
@@ -31,6 +34,7 @@ const SearchScreen = () => {
         onFavouritesToggle={() => setIsFavouritesToggled(!isFavouritesToggled)}
       />
       {isFavouritesToggled && <ResultsList results={favourites} />}
+      <Button title="logout" onPress={() => onLogout()} />
     </View>
   );
 };

@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Screens from "./screens";
 import useAppHooks from "../hooks/app.hooks";
 import { Platform } from "react-native";
 import ThemeSwitchButton from "../components/theme_switch.button";
+import { FavouritesProvider } from "../contexts/favourites.context";
 const RootStack = createStackNavigator();
 
-export default ScreensNavigator = () => {
+const ScreensNavigator = () => {
   const { themePalette } = useAppHooks();
   const { headerStyle, headerTitleStyle } = styled(themePalette);
 
@@ -23,23 +24,28 @@ export default ScreensNavigator = () => {
   };
 
   return (
-    <RootStack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
-      <RootStack.Screen
-        name="Home"
-        component={Screens.Search}
-        options={{ ...options }}
-      />
-      <RootStack.Screen
-        name="Results"
-        component={Screens.SearchResults}
-        options={{ ...options }}
-      />
-      <RootStack.Screen
-        name="Details"
-        component={Screens.MovieDetails}
-        options={{ ...options }}
-      />
-    </RootStack.Navigator>
+    <FavouritesProvider>
+      <RootStack.Navigator
+        initialRouteName="Home"
+        screenOptions={screenOptions}
+      >
+        <RootStack.Screen
+          name="Home"
+          component={Screens.Search}
+          options={{ ...options }}
+        />
+        <RootStack.Screen
+          name="Results"
+          component={Screens.SearchResults}
+          options={{ ...options }}
+        />
+        <RootStack.Screen
+          name="Details"
+          component={Screens.MovieDetails}
+          options={{ ...options }}
+        />
+      </RootStack.Navigator>
+    </FavouritesProvider>
   );
 };
 
@@ -57,3 +63,4 @@ const styled = (themePalette) =>
       fontFamily: Platform.OS == "ios" ? "Impact" : null,
     },
   });
+export default ScreensNavigator;
