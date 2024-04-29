@@ -1,16 +1,9 @@
 import React, { useEffect } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import useDetails from "../hooks/movie_details.hooks";
 import useAppHooks from "../hooks/app.hooks";
 import { ScrollView } from "react-native-gesture-handler";
-import { Fontisto } from "@expo/vector-icons";
+import FavouriteButton from "../components/favourite.button";
 const MovieDetails = ({ route }) => {
   const { movieId } = route.params;
   const { getMovieDetails, movieDetails, errorMessage } = useDetails();
@@ -22,7 +15,19 @@ const MovieDetails = ({ route }) => {
   }, [movieId]);
 
   if (!movieDetails) {
-    return null;
+    return (
+      <View style={container}>
+        <View style={poster} />
+        <View style={headerContainer}>
+          <Text style={title}>Loading...</Text>
+          {movieDetails && <FavouriteButton movie={movieDetails} />}
+        </View>
+        <Text style={details}>Loading...</Text>
+        <ScrollView>
+          <Text style={overview}>Loading...</Text>
+        </ScrollView>
+      </View>
+    );
   }
 
   return (
@@ -35,13 +40,7 @@ const MovieDetails = ({ route }) => {
       />
       <View style={headerContainer}>
         <Text style={title}>{movieDetails.title}</Text>
-        <TouchableOpacity>
-          <Fontisto
-            name="favorite"
-            size={45}
-            color={true ? themePalette.cinecompassYellow : themePalette.text}
-          />
-        </TouchableOpacity>
+        <FavouriteButton movie={movieDetails} />
       </View>
       <Text style={details}>{movieDetails.releaseDate}</Text>
       <Text style={details}>
