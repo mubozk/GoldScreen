@@ -1,4 +1,4 @@
-import React, { useState, createContext, useRef } from "react";
+import React, { useState, createContext, useRef, useEffect } from "react";
 import {
   signOut,
   createUserWithEmailAndPassword,
@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 
 import { loginRequest } from "../services/authentication.service";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AuthenticationContext = createContext();
 
@@ -25,19 +26,36 @@ export const AuthenticationContextProvider = ({ children }) => {
     }
   });
 
-  const onLogin = (email, password) => {
-    setIsLoading(true);
-    loginRequest(auth, email, password)
-      .then((u) => {
-        setUser(u);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        setIsLoading(false);
-        setError(e.toString());
-      });
-  };
+  useEffect(() => {
+    const getUser = async () => {
+      setIsLoading(true);
+      const userAsString = await AsyncStorage.getItem("user");
+      if (userAsString) {
+        try {
+          setUser(JSON.parse(userAsString));
+        } catch (e) {
+          console.error("Error parsing user data:", e);
+        }
+      }
+      setIsLoading(false);
+    };
+    getUser();
+  }, []);
 
+  const onLogin = async (email, password) => {
+    setIsLoading(true);
+
+    try {
+      const u = await loginRequest(auth, email, password);
+      setUser(u);
+      await AsyncStorage.setItem("user", JSON.stringify(u));
+      setIsLoading(false);
+    } catch (e) {
+      setIsLoading(false);
+      setError(e.toString());
+      console.error("Error in onLogin:", e);
+    }
+  };
   const onRegister = (email, password, repeatedPassword) => {
     setIsLoading(true);
     if (password !== repeatedPassword) {
