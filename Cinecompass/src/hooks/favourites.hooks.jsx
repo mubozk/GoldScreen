@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthenticationContext } from "../contexts/authentication.context";
 const useFavourites = () => {
   const { user, isLoading } = useContext(AuthenticationContext);
+
   const {
     favouritesState: { favourites },
     favouritesDispatch,
@@ -13,6 +14,7 @@ const useFavourites = () => {
   const loadFavourites = async () => {
     if (user && user.uid) {
       const value = await AsyncStorage.getItem(`@favourites-${user.uid}`);
+
       if (value !== null) {
         favouritesDispatch({
           type: "LOAD_FAVOURITES",
@@ -26,6 +28,7 @@ const useFavourites = () => {
   useEffect(() => {
     loadFavourites();
   }, [user, isLoading]); // Depend on user to ensure it runs after user is set
+
 
   // Save favourites to AsyncStorage whenever they change
   useEffect(() => {
@@ -50,6 +53,7 @@ const useFavourites = () => {
       console.log("error storing", e);
     }
   };
+
 
   return {
     favourites,
