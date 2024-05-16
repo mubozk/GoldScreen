@@ -1,41 +1,53 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import useAppHooks from "../hooks/app.hooks";
+import NavigationActions from "../navigation/navigation_actions";
 
 const MovieCard = ({ movie }) => {
+  const { themePalette } = useAppHooks();
+  const { cardContainer, image, title } = styled(themePalette);
+  const { navigatePush } = NavigationActions();
+
   return (
-    <View style={styles.cardContainer}>
+    <TouchableOpacity
+      style={cardContainer}
+      onPress={() => navigatePush("Details", { movieId: movie.id })}
+    >
       <Image
         source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
-        style={styles.image}
+        style={image}
       />
-      <Text style={styles.title}>{movie.title}</Text>
-    </View>
+      <Text style={title}>{movie.title}</Text>
+    </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({
-  cardContainer: {
-    width: 140,
-    marginRight: 10,
-    borderRadius: 8,
-    overflow: "hidden",
-    elevation: 3,
-    backgroundColor: "#fff",
-    shadowOffset: { width: 0, height: 2 },
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-  },
-  image: {
-    width: "100%",
-    height: 200,
-    resizeMode: "cover",
-  },
-  title: {
-    padding: 5,
-    fontSize: 14,
-    fontWeight: "bold",
-  },
-});
+const styled = (themePalette) =>
+  StyleSheet.create({
+    cardContainer: {
+      width: 140,
+      marginRight: 10,
+      borderRadius: 8,
+      overflow: "hidden",
+      elevation: 5,
+      backgroundColor: themePalette.primary,
+      shadowOffset: { width: 0, height: 3 },
+      shadowColor: "#000",
+      shadowOpacity: 0.3,
+      shadowRadius: 4,
+    },
+    image: {
+      width: "100%",
+      height: 200,
+      resizeMode: "cover",
+    },
+    title: {
+      padding: 5,
+      fontSize: 14,
+      fontWeight: "bold",
+      textAlign: "center",
+      color: themePalette.text,
+    },
+  });
 
 export default MovieCard;

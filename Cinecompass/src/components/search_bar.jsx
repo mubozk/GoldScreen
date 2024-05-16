@@ -1,7 +1,6 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet, View, TextInput } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
+import { Feather, AntDesign } from "@expo/vector-icons";
 import useAppHooks from "../hooks/app.hooks";
 
 const SearchBar = ({
@@ -53,13 +52,13 @@ const styled = (themePalette) =>
   StyleSheet.create({
     backgroundStyle: {
       backgroundColor: themePalette.secondary,
-      marginHorizontal: 15,
+
       borderRadius: 5,
       height: 50,
       flexDirection: "row",
       alignItems: "center",
       paddingHorizontal: 10,
-      marginTop: 50,
+      marginTop: 20,
     },
     iconStyle: {
       marginHorizontal: 5,

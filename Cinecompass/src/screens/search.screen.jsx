@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   View,
-  Button,
   Text,
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SearchBar from "../components/search_bar";
 import NavigationActions from "../navigation/navigation_actions";
 import useAppHooks from "../hooks/app.hooks";
 import useFavourites from "../hooks/favourites.hooks";
 import ResultsList from "../components/results_list";
 import { AuthenticationContext } from "../contexts/authentication.context";
-import { useContext } from "react";
 import MovieCard from "../components/movie_card";
 import useMovieLists from "../hooks/movies_lists.hooks";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 const SearchScreen = () => {
   const { themePalette, toggleTheme } = useAppHooks();
   const [query, setQuery] = useState("");
-  const { backgroundStyle, container, header, logoutIcon, flatList } =
+  const { backgroundStyle, container, header, logoutIcon, flatList, cardsContainer } =
     styled(themePalette);
   const { navigatePush } = NavigationActions();
   const { favourites } = useFavourites();
@@ -46,7 +45,7 @@ const SearchScreen = () => {
         onFavouritesToggle={() => setIsFavouritesToggled(!isFavouritesToggled)}
       />
       {!isFavouritesToggled ? (
-        <>
+        <View style={cardsContainer}>
           <Text style={header}>Popular Movies</Text>
           <FlatList
             horizontal
@@ -65,7 +64,7 @@ const SearchScreen = () => {
             showsHorizontalScrollIndicator={false}
             style={flatList}
           />
-        </>
+        </View>
       ) : (
         <ResultsList results={favourites} />
       )}
@@ -75,12 +74,14 @@ const SearchScreen = () => {
     </View>
   );
 };
-export default SearchScreen;
+
 const styled = (themePalette) =>
   StyleSheet.create({
     backgroundStyle: {
       flex: 1,
       backgroundColor: themePalette.primary,
+      paddingHorizontal: 15,
+      paddingTop: 10,
     },
     container: {
       flex: 1,
@@ -88,17 +89,22 @@ const styled = (themePalette) =>
       backgroundColor: "#fff",
     },
     header: {
-      fontSize: 18,
+      fontSize: 20,
       fontWeight: "bold",
-      marginLeft: 10,
-      marginTop: 10,
+      marginVertical: 10,
+      color: themePalette.cinecompassYellow,
     },
     flatList: {
       marginBottom: 10,
     },
     logoutIcon: {
       position: "absolute",
-      bottom: 20,
-      right: 20,
+      bottom: 25,
+      right: 25,
     },
+    cardsContainer: {
+      marginVertical: 20
+    }
   });
+
+export default SearchScreen;
