@@ -24,18 +24,15 @@ const useFavourites = () => {
     }
   };
 
-  // Run once on mount and whenever the user changes
   useEffect(() => {
     loadFavourites();
-  }, [user, isLoading]); // Depend on user to ensure it runs after user is set
+  }, [user, isLoading]);
 
-
-  // Save favourites to AsyncStorage whenever they change
   useEffect(() => {
     if (user && user.uid && favourites.length) {
       saveFavourites(favourites, user.uid);
     }
-  }, [favourites]); // Only run when favourites change
+  }, [favourites]);
 
   const addFavourite = (movie) => {
     favouritesDispatch({ type: "ADD_FAVOURITE", payload: movie });
@@ -53,7 +50,6 @@ const useFavourites = () => {
       console.log("error storing", e);
     }
   };
-
 
   return {
     favourites,

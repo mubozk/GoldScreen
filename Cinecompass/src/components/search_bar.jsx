@@ -1,9 +1,8 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { StyleSheet, View, TextInput } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import useAppHooks from "../hooks/app.hooks.jsx";
+import { TouchableOpacity, StyleSheet, View, TextInput } from "react-native";
+import { Feather, AntDesign } from "@expo/vector-icons";
+import useAppHooks from "../hooks/app.hooks";
+
 const SearchBar = ({
   term,
   onTermChange,
@@ -12,15 +11,21 @@ const SearchBar = ({
   onFavouritesToggle,
 }) => {
   const { themePalette } = useAppHooks();
-  const { backgroundStyle, iconStyle, inputStyle, textInputStyle } =
-    styled(themePalette);
+  const {
+    backgroundStyle,
+    iconStyle,
+    inputStyle,
+    clearIconStyle,
+    textInputStyle,
+  } = styled(themePalette);
+
   return (
     <View style={backgroundStyle}>
       <TouchableOpacity style={iconStyle} onPress={onFavouritesToggle}>
         <AntDesign
           name={isFavouritesToggled ? "heart" : "hearto"}
-          size={25}
-          color={isFavouritesToggled ? themePalette.cinecompassYellow : "black"}
+          size={20}
+          color={isFavouritesToggled ? themePalette.cinecompassYellow : "grey"}
         />
       </TouchableOpacity>
       <TextInput
@@ -28,12 +33,17 @@ const SearchBar = ({
         autoCorrect={false}
         style={textInputStyle}
         placeholder="Search your favorite movies now!"
-        placeholderTextColor={themePalette.tertiary}
+        placeholderTextColor="grey"
         value={term}
         onChangeText={onTermChange}
         onEndEditing={onTermSubmit}
       />
-      <Feather style={iconStyle} name="search" size={30} />
+      <TouchableOpacity style={clearIconStyle} onPress={() => onTermChange("")}>
+        <Feather name="x" size={20} color="grey" />
+      </TouchableOpacity>
+      <TouchableOpacity style={iconStyle} onPress={onTermSubmit}>
+        <Feather name="search" size={20} color="black" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -42,26 +52,28 @@ const styled = (themePalette) =>
   StyleSheet.create({
     backgroundStyle: {
       backgroundColor: themePalette.secondary,
-      marginTop: 30,
-      marginHorizontal: 15,
+
       borderRadius: 5,
       height: 50,
       flexDirection: "row",
+      alignItems: "center",
+      paddingHorizontal: 10,
+      marginTop: 20,
     },
     iconStyle: {
-      alignSelf: "center",
-      fontSize: 25,
-      color: themePalette.cinecompassYellow,
-      paddingHorizontal: 5,
+      marginHorizontal: 5,
     },
-    iconContainerStyle: {
-      alignSelf: "center",
+    clearIconStyle: {
+      marginLeft: "auto",
+      marginRight: 10,
     },
     textInputStyle: {
+      flex: 1,
+      marginLeft: 5,
+      marginRight: 5,
       color: themePalette.text,
       fontSize: 17,
-      width: "75%",
-      height: "100%",
     },
   });
+
 export default SearchBar;

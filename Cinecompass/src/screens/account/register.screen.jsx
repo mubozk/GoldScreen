@@ -1,14 +1,15 @@
 import React, { useState, useContext } from "react";
 import {
-  Button,
   TextInput,
   Text,
   View,
   StyleSheet,
   ImageBackground,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 import { AuthenticationContext } from "../../contexts/authentication.context";
+import { FontAwesome5 } from "@expo/vector-icons";
 import NavigationActions from "../../navigation/navigation_actions";
 
 const RegisterScreen = () => {
@@ -28,9 +29,8 @@ const RegisterScreen = () => {
         <Text style={styles.title}>Register</Text>
         <TextInput
           style={styles.input}
-          label="E-mail"
+          placeholder="E-mail"
           value={email}
-          textContentType="emailAddress"
           keyboardType="email-address"
           autoCapitalize="none"
           onChangeText={(u) => setEmail(u)}
@@ -38,9 +38,8 @@ const RegisterScreen = () => {
         <View style={styles.spacer} />
         <TextInput
           style={styles.input}
-          label="Password"
+          placeholder="Password"
           value={password}
-          textContentType="password"
           secureTextEntry
           autoCapitalize="none"
           onChangeText={(p) => setPassword(p)}
@@ -48,9 +47,8 @@ const RegisterScreen = () => {
         <View style={styles.spacer} />
         <TextInput
           style={styles.input}
-          label="Repeat Password"
+          placeholder="Repeat Password"
           value={repeatedPassword}
-          textContentType="password"
           secureTextEntry
           autoCapitalize="none"
           onChangeText={(p) => setRepeatedPassword(p)}
@@ -62,16 +60,21 @@ const RegisterScreen = () => {
         )}
         <View style={styles.spacer} />
         {!isLoading ? (
-          <Button
-            title="Register"
-            color="#5A9"
+          <TouchableOpacity
+            style={styles.button}
             onPress={() => onRegister(email, password, repeatedPassword)}
-          />
+          >
+            <FontAwesome5 name="user-plus" size={20} color="white" />
+            <Text style={styles.buttonText}>Register</Text>
+          </TouchableOpacity>
         ) : (
           <ActivityIndicator size="large" color="#0000ff" />
         )}
         <View style={styles.spacer} />
-        <Button title="Back" color="#5A9" onPress={() => navigatePop()} />
+        <TouchableOpacity style={styles.button} onPress={() => navigatePop()}>
+          <FontAwesome5 name="arrow-left" size={20} color="white" />
+          <Text style={styles.buttonText}>Back</Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -85,8 +88,9 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: "rgba(255, 255, 255, 0.7)",
-    padding: 16,
-    marginTop: 8,
+    padding: 20,
+    borderRadius: 10,
+    alignItems: "center",
   },
   cover: {
     position: "absolute",
@@ -99,10 +103,12 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: "gray",
     borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
     marginBottom: 10,
   },
   spacer: {
-    height: 16,
+    height: 20,
   },
   errorContainer: {
     maxWidth: 300,
@@ -117,6 +123,20 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     marginBottom: 16,
+  },
+  button: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#5A9",
+    padding: 15,
+    borderRadius: 5,
+    width: 200,
+    justifyContent: "center",
+  },
+  buttonText: {
+    color: "white",
+    marginLeft: 10,
+    fontSize: 16,
   },
 });
 
