@@ -52,7 +52,6 @@ const styled = (themePalette) =>
   StyleSheet.create({
     backgroundStyle: {
       backgroundColor: themePalette.secondary,
-
       borderRadius: 5,
       height: 50,
       flexDirection: "row",

@@ -75,6 +75,7 @@ const SearchScreen = () => {
   );
 };
 
+
 const styled = (themePalette) =>
   StyleSheet.create({
     backgroundStyle: {
@@ -108,3 +109,4 @@ const styled = (themePalette) =>
   });
 
 export default SearchScreen;
+

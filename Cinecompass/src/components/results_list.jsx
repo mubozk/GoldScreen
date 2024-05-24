@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
+
 import MovieItem from "./movie_item";
 import NavigationActions from "../navigation/navigation_actions";
 import useAppHooks from "../hooks/app.hooks";
@@ -24,7 +25,6 @@ const ResultsList = ({ results }) => {
     </View>
   );
 };
-
 const styled = (themePalette) =>
   StyleSheet.create({
     container: {
