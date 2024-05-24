@@ -64,6 +64,10 @@ const styled = (themePalette) =>
     headerContainer: {
       flexDirection: "row",
       justifyContent: "space-between",
+      alignItems: "center",
+      marginVertical: 10,
+      borderRadius: 10,
+      marginBottom: 20,
     },
     poster: {
       width: "100%",
@@ -71,17 +75,21 @@ const styled = (themePalette) =>
       resizeMode: "contain",
     },
     title: {
-      fontSize: 35,
+      flex: 1,
+      fontSize: 28,
       fontWeight: "bold",
       color: themePalette.cinecompassYellow,
+      marginRight: 10,
     },
     details: {
       fontSize: 16,
       color: "grey",
+      marginBottom: 10,
     },
     overview: {
       fontSize: 22,
       color: themePalette.text,
+      marginTop: 10,
     },
   });
 
